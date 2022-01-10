@@ -10,15 +10,6 @@ public class Participant implements Runnable {
     @JsonProperty
     private int indexLot;
 
-    public Participant(){
-    }
-
-    public Participant(String name, int money, int indexLot) {
-        this.name = name;
-        this.money = money;
-        this.indexLot = indexLot;
-    }
-
     public String getName() {
         return name;
     }

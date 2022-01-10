@@ -12,18 +12,15 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Auction {
     private static Auction instance;
-    private static Semaphore auctionSemaphore = new Semaphore(5);;
+    private static List<Lot> lots;
+    public static final Integer SEMAPHORE_CAPACITY = 3;
+    private static Semaphore auctionSemaphore = new Semaphore(SEMAPHORE_CAPACITY);
     private static final Lock auctionLock = new ReentrantLock();
     public static final Integer LOTS_AMOUNT = 3;
 
-    private static List<Lot> lots;
     public static final Logger LOGGER = LogManager.getLogger();
 
     private Auction(){
-        lots = new ArrayList<>(LOTS_AMOUNT);
-        for (int i = 0; i < LOTS_AMOUNT; i++){
-            lots.add(new Lot());
-        }
     }
 
     public static Auction getInstance(){
@@ -34,6 +31,7 @@ public class Auction {
                 localInstance = instance;
                 if (localInstance == null) {
                     instance = localInstance = new Auction();
+                    initializeLots();
                 }
             }
             finally{
@@ -41,6 +39,13 @@ public class Auction {
             }
         }
         return localInstance;
+    }
+
+    private static void initializeLots(){
+        lots = new ArrayList<>(LOTS_AMOUNT);
+        for (int i = 0; i < LOTS_AMOUNT; i++){
+            lots.add(new Lot());
+        }
     }
 
     public void process(Participant participant) {
