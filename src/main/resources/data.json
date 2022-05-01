@@ -1,0 +1,29 @@
+{
+  "participants": [
+    {
+      "name":"Peter",
+      "money":100,
+      "indexLot":1
+    },
+    {
+      "name":"Ivan",
+      "money":50,
+      "indexLot":2
+    },
+    {
+      "name":"John",
+      "money":105,
+      "indexLot":3
+    },
+    {
+      "name":"Ann",
+      "money":73,
+      "indexLot":1
+    },
+    {
+      "name":"Maria",
+      "money":88,
+      "indexLot":2
+    }
+  ]
+}
